@@ -1,0 +1,38 @@
+* {
+  font-family: Inter, sans-serif;
+}
+
+header {
+  background-color: #562b81;
+  height: 50px;
+  margin-top: 0;
+}
+
+.site-title {
+  color: white;
+  line-height: 50px;
+}
+
+img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+form input,
+textarea {
+  display: block;
+  margin: 5px 0 30px;
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #b6b6b6;
+}
+
+label[for="notes"] {
+  margin-top: 20px;
+}
+
+#save {
+  width: 100px;
+  margin-left: 0;
+}
