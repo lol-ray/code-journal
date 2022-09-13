@@ -2,6 +2,10 @@
   font-family: Inter, sans-serif;
 }
 
+body {
+  background-color: #f0f0f0;
+}
+
 header {
   background-color: #562b81;
   height: 50px;
@@ -28,11 +32,23 @@ textarea {
   border: 1px solid #b6b6b6;
 }
 
+input:focus,
+textarea:focus {
+  border: 2px solid #562b81;
+}
+
 label[for="notes"] {
   margin-top: 20px;
 }
 
+#notes {
+  margin: 5px 0 20px;
+}
+
 #save {
-  width: 100px;
-  margin-left: 0;
+  width: 75px;
+  float: right;
+  color: white;
+  background-color: #562b81;
+  border: none;
 }
