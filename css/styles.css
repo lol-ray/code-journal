@@ -34,7 +34,7 @@ textarea {
 
 input:focus,
 textarea:focus {
-  border: 2px solid #562b81;
+  outline: 2px solid #562b81;
 }
 
 label[for="notes"] {
