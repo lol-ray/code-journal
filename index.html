@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Code Journal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Domine:wght@700&family=Inter:wght@400;700;900&display=swap"
+    rel="stylesheet">
   <link rel="icon" href="images/favicon.ico">
   <link
     rel="stylesheet"
@@ -17,8 +21,32 @@
 </head>
 <body>
   <header>
+    <h1 class="site-title container">Code Journal</h1>
   </header>
   <main>
+    <div data-view="entry-form" class="container">
+      <h2 class="entry-title">New Entry</h2>
+      <form>
+        <div class="row">
+          <div class="column-half">
+            <img id="image-preview" src="images/placeholder-image-square.jpg" alt="image preview">
+          </div>
+          <div class="column-half">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" required>
+            <label for="photo-url">Photo URL</label>
+            <input type="url" id="photo-url" name="photo-url" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column-full">
+            <label for="notes">Notes</label>
+            <textarea id="notes" name="notes" required></textarea>
+            <input type="submit" id="save" name="save" value="SAVE">
+          </div>
+        </div>
+      </form>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
