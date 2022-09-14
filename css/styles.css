@@ -52,3 +52,25 @@ label[for="notes"] {
   background-color: #562b81;
   border: none;
 }
+
+.entry-img {
+  object-fit: cover;
+  width: 382px;
+  height: 382px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin: 0;
+  padding: 20px;
+  line-height: 25px;
+}
+
+h3 {
+  padding: 0;
+}
