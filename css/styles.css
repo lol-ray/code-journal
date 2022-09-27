@@ -10,11 +10,13 @@ header {
   background-color: #562b81;
   height: 50px;
   margin-top: 0;
+  line-height: 50px;
 }
 
 .site-title {
   color: white;
   line-height: 50px;
+  display: inline;
 }
 
 img {
@@ -55,8 +57,16 @@ label[for="notes"] {
 
 .entry-img {
   object-fit: cover;
-  width: 382px;
-  height: 382px;
+  width: 527px;
+  height: 527px;
+}
+
+@media screen and (min-width: 768px) {
+  .entry-img {
+    object-fit: cover;
+    width: 414px;
+    height: 414px;
+  }
 }
 
 ul {
@@ -67,10 +77,64 @@ ul {
 
 li {
   margin: 0;
-  padding: 20px;
   line-height: 25px;
 }
 
 h3 {
   padding: 0;
+}
+
+.nav-entries {
+  display: inline;
+  color: white;
+  font-weight: 400;
+  margin-left: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-space-between {
+  justify-content: space-between;
+}
+
+.btn-new-entry {
+  width: 75px;
+  height: 35px;
+  border-radius: 5px;
+  color: white;
+  background-color: #562b81;
+  border: none;
+  text-transform: uppercase;
+}
+
+.padding-right-75rem {
+  padding-right: 0;
+}
+
+.padding-left-75rem {
+  padding-left: 0;
+}
+
+.padding-bottom-75rem {
+  padding-bottom: 0.75rem;
+}
+
+@media screen and (min-width: 768px) {
+  .padding-right-75rem {
+    padding-right: 0.75rem;
+  }
+
+  .padding-left-75rem {
+    padding-left: 0.75rem;
+  }
+}
+
+.align-items-center {
+  align-items: center;
 }

@@ -31,7 +31,7 @@ function displayEntry(entry) {
   newLi.appendChild(divRow);
 
   var halfCol1 = document.createElement('div');
-  halfCol1.setAttribute('class', 'column-half');
+  halfCol1.setAttribute('class', 'column-half padding-right-75rem padding-bottom-75rem');
   divRow.appendChild(halfCol1);
 
   var imgDisplay = document.createElement('img');
@@ -40,7 +40,7 @@ function displayEntry(entry) {
   halfCol1.appendChild(imgDisplay);
 
   var halfCol2 = document.createElement('div');
-  halfCol2.setAttribute('class', 'column-half');
+  halfCol2.setAttribute('class', 'column-half padding-left-75rem');
   divRow.appendChild(halfCol2);
 
   var h3 = document.createElement('h3');
@@ -61,3 +61,35 @@ var entryList = document.querySelector('.entry-list');
 for (let i = 0; i < data.entries.length; ++i) {
   entryList.appendChild(displayEntry(data.entries[i]));
 }
+
+var $entryView = document.querySelector('div[data-view="entries"]');
+var $formView = document.querySelector('div[data-view="entry-form"]');
+var $navEntries = document.querySelector('.nav-entries');
+var $btnNew = document.querySelector('.btn-new-entry');
+var $submitEntry = document.querySelector('#save');
+
+$navEntries.addEventListener('click', function () {
+  viewSwap('entries');
+});
+$btnNew.addEventListener('click', function () {
+  viewSwap('entry-form');
+});
+$submitEntry.addEventListener('click', function () {
+  $entryView.className = 'container';
+  $formView.className = 'container hidden';
+});
+
+function viewSwap(dataView) {
+  data.view = dataView;
+  if (dataView === 'entries') {
+    $entryView.className = 'container';
+    $formView.className = 'container hidden';
+  } else if (dataView === 'entry-form') {
+    $entryView.className = 'container hidden';
+    $formView.className = 'container';
+  }
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  viewSwap(data.view);
+});
