@@ -9,20 +9,6 @@ $photoURLInput.addEventListener('input', function (event) {
   }
 });
 
-$form.addEventListener('submit', function (event) {
-  event.preventDefault();
-  const formData = {
-    title: $form.elements.title.value,
-    photoURL: $form.elements['photo-url'].value,
-    notes: $form.elements.notes.value,
-    entryID: data.nextEntryId
-  };
-  ++data.nextEntryId;
-  data.entries.unshift(formData);
-  $form.reset();
-  $imagePreview.setAttribute('src', 'images/placeholder-image-square.jpg');
-});
-
 function displayEntry(entry) {
   var newLi = document.createElement('li');
 
@@ -61,6 +47,23 @@ var entryList = document.querySelector('.entry-list');
 for (let i = 0; i < data.entries.length; ++i) {
   entryList.appendChild(displayEntry(data.entries[i]));
 }
+
+$form.addEventListener('submit', function (event) {
+  event.preventDefault();
+  const formData = {
+    title: $form.elements.title.value,
+    photoURL: $form.elements['photo-url'].value,
+    notes: $form.elements.notes.value,
+    entryID: data.nextEntryId
+  };
+  ++data.nextEntryId;
+  data.entries.unshift(formData);
+  displayEntry(formData);
+  entryList.prepend(displayEntry(formData));
+  $form.reset();
+  $imagePreview.setAttribute('src', 'images/placeholder-image-square.jpg');
+  viewSwap('entries');
+});
 
 var $entryView = document.querySelector('div[data-view="entries"]');
 var $formView = document.querySelector('div[data-view="entry-form"]');
