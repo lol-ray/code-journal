@@ -61,6 +61,11 @@ label[for="notes"] {
   height: 527px;
 }
 
+.fa-pen {
+  color: #562b81;
+  font-size: 20px;
+}
+
 @media screen and (min-width: 768px) {
   .entry-img {
     object-fit: cover;

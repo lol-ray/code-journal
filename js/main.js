@@ -11,6 +11,7 @@ $photoURLInput.addEventListener('input', function (event) {
 
 function displayEntry(entry) {
   var newLi = document.createElement('li');
+  newLi.setAttribute('data-entry-id', entry.entryID);
 
   var divRow = document.createElement('div');
   divRow.setAttribute('class', 'row');
@@ -29,10 +30,18 @@ function displayEntry(entry) {
   halfCol2.setAttribute('class', 'column-half padding-left-75rem');
   divRow.appendChild(halfCol2);
 
+  var editContainer = document.createElement('div');
+  editContainer.setAttribute('class', 'flex justify-space-between align-items-center');
+  halfCol2.appendChild(editContainer);
+
   var h3 = document.createElement('h3');
   var h3Title = document.createTextNode(entry.title);
   h3.appendChild(h3Title);
-  halfCol2.appendChild(h3);
+  editContainer.appendChild(h3);
+
+  var editButton = document.createElement('i');
+  editButton.setAttribute('class', 'fa-solid fa-pen');
+  editContainer.appendChild(editButton);
 
   var p = document.createElement('p');
   var pNotes = document.createTextNode(entry.notes);
@@ -90,6 +99,16 @@ function viewSwap(dataView) {
   } else if (dataView === 'entry-form') {
     $entryView.className = 'container hidden';
     $formView.className = 'container';
+  }
+}
+
+var $entry = document.querySelector('li');
+
+$entry.addEventListener('click', entryEdit);
+
+function entryEdit(event) {
+  if (event.target.matches('.fa-pen')) {
+    viewSwap('entry-form');
   }
 }
 
