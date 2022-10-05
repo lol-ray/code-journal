@@ -34,11 +34,11 @@ $form.addEventListener('submit', function (event) {
         x.title = formData.title;
         x.photoURL = formData.photoURL;
         x.notes = formData.notes;
-        displayEntry(x);
+        var $toReplace = document.querySelector('[data-entry-id=' + '"' + x.entryID + '"]');
+        $toReplace.replaceWith(displayEntry(x));
         data.editing = null;
       }
     }
-
   }
   $form.reset();
   $imagePreview.setAttribute('src', 'images/placeholder-image-square.jpg');
