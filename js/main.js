@@ -37,6 +37,8 @@ $navEntries.addEventListener('click', function () {
 });
 $btnNew.addEventListener('click', function () {
   viewSwap('entry-form');
+  $form.reset();
+  $imagePreview.setAttribute('src', 'images/placeholder-image-square.jpg');
 });
 $submitEntry.addEventListener('click', function () {
   $entryView.className = 'container';
@@ -106,14 +108,23 @@ function viewSwap(dataView) {
   }
 }
 
+var $formTitle = document.querySelector('#title');
+var $formPhoto = document.querySelector('#photo-url');
+var $formNotes = document.querySelector('#notes');
+
 function entryEdit(event) {
   if (event.target.matches('.fa-pen')) {
+    $form.reset();
     viewSwap('entry-form');
     var editId = event.target.closest('li').getAttribute('data-entry-id');
     for (const x of data.entries) {
-      if (x.entryID === editId) {
-        data.editing = editId;
+      if (x.entryID === Number(editId)) {
+        data.editing = x;
       }
     }
+    $formTitle.value = data.editing.title;
+    $formPhoto.value = data.editing.photoURL;
+    $formNotes.value = data.editing.notes;
+    $imagePreview.setAttribute('src', data.editing.photoURL);
   }
 }
