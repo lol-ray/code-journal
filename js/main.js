@@ -23,10 +23,23 @@ $form.addEventListener('submit', function (event) {
     notes: $form.elements.notes.value,
     entryID: data.nextEntryId
   };
-  ++data.nextEntryId;
-  data.entries.unshift(formData);
-  displayEntry(formData);
-  $entryList.prepend(displayEntry(formData));
+  if (data.editing === null) {
+    ++data.nextEntryId;
+    data.entries.unshift(formData);
+    displayEntry(formData);
+    $entryList.prepend(displayEntry(formData));
+  } else {
+    for (const x of data.entries) {
+      if (x === data.editing) {
+        x.title = formData.title;
+        x.photoURL = formData.photoURL;
+        x.notes = formData.notes;
+        displayEntry(x);
+        data.editing = null;
+      }
+    }
+
+  }
   $form.reset();
   $imagePreview.setAttribute('src', 'images/placeholder-image-square.jpg');
   viewSwap('entries');
@@ -39,6 +52,7 @@ $btnNew.addEventListener('click', function () {
   viewSwap('entry-form');
   $form.reset();
   $imagePreview.setAttribute('src', 'images/placeholder-image-square.jpg');
+  data.editing = null;
 });
 $submitEntry.addEventListener('click', function () {
   $entryView.className = 'container';
