@@ -47,12 +47,20 @@ label[for="notes"] {
   margin: 5px 0 20px;
 }
 
+.delete {
+  color: red;
+  text-decoration: underline;
+  cursor: pointer;
+  float: left;
+}
+
 #save {
   width: 75px;
   float: right;
   color: white;
   background-color: #562b81;
   border: none;
+  cursor: pointer;
 }
 
 .entry-img {
@@ -64,6 +72,7 @@ label[for="notes"] {
 .fa-pen {
   color: #562b81;
   font-size: 20px;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
@@ -94,6 +103,7 @@ h3 {
   color: white;
   font-weight: 400;
   margin-left: 20px;
+  cursor: pointer;
 }
 
 .hidden {
@@ -116,6 +126,7 @@ h3 {
   background-color: #562b81;
   border: none;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 .padding-right-75rem {

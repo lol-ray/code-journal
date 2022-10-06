@@ -8,6 +8,7 @@ var $navEntries = document.querySelector('.nav-entries');
 var $btnNew = document.querySelector('.btn-new-entry');
 var $submitEntry = document.querySelector('#save');
 var $entryHeading = document.querySelector('.entry-heading');
+var $btnDelete = document.querySelector('.delete');
 
 $photoURLInput.addEventListener('input', function (event) {
   $imagePreview.setAttribute('src', $photoURLInput.value);
@@ -52,6 +53,7 @@ $navEntries.addEventListener('click', function () {
 $btnNew.addEventListener('click', function () {
   viewSwap('entry-form');
   $entryHeading.textContent = 'New Entry';
+  $btnDelete.className = 'delete hidden';
   $form.reset();
   $imagePreview.setAttribute('src', 'images/placeholder-image-square.jpg');
   data.editing = null;
@@ -63,6 +65,11 @@ $submitEntry.addEventListener('click', function () {
 
 window.addEventListener('DOMContentLoaded', function () {
   viewSwap(data.view);
+  if (data.editing === null) {
+    $btnDelete.className = 'delete hidden';
+  } else {
+    $btnDelete.className = 'delete';
+  }
 });
 
 $entryList.addEventListener('click', entryEdit);
@@ -133,6 +140,7 @@ function entryEdit(event) {
     $form.reset();
     viewSwap('entry-form');
     $entryHeading.textContent = 'Edit Entry';
+    $btnDelete.className = 'delete';
     var editId = event.target.closest('li').getAttribute('data-entry-id');
     for (const x of data.entries) {
       if (x.entryID === Number(editId)) {
