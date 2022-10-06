@@ -8,6 +8,10 @@ var $navEntries = document.querySelector('.nav-entries');
 var $btnNew = document.querySelector('.btn-new-entry');
 var $submitEntry = document.querySelector('#save');
 var $entryHeading = document.querySelector('.entry-heading');
+var $btnDelete = document.querySelector('.delete');
+var $deleteModal = document.querySelector('.delete-modal');
+var $deleteCancel = document.querySelector('.delete-cancel');
+var $deleteConfirm = document.querySelector('.delete-confirm');
 
 $photoURLInput.addEventListener('input', function (event) {
   $imagePreview.setAttribute('src', $photoURLInput.value);
@@ -49,13 +53,16 @@ $form.addEventListener('submit', function (event) {
 $navEntries.addEventListener('click', function () {
   viewSwap('entries');
 });
+
 $btnNew.addEventListener('click', function () {
   viewSwap('entry-form');
   $entryHeading.textContent = 'New Entry';
+  $btnDelete.className = 'delete hidden';
   $form.reset();
   $imagePreview.setAttribute('src', 'images/placeholder-image-square.jpg');
   data.editing = null;
 });
+
 $submitEntry.addEventListener('click', function () {
   $entryView.className = 'container';
   $formView.className = 'container hidden';
@@ -63,9 +70,20 @@ $submitEntry.addEventListener('click', function () {
 
 window.addEventListener('DOMContentLoaded', function () {
   viewSwap(data.view);
+  if (data.editing === null) {
+    $btnDelete.className = 'delete hidden';
+  } else {
+    $btnDelete.className = 'delete';
+  }
 });
 
 $entryList.addEventListener('click', entryEdit);
+
+$btnDelete.addEventListener('click', showDeleteModal);
+
+$deleteCancel.addEventListener('click', hideDeleteModal);
+
+$deleteConfirm.addEventListener('click', deleteEntry);
 
 function displayEntry(entry) {
   var newLi = document.createElement('li');
@@ -133,6 +151,7 @@ function entryEdit(event) {
     $form.reset();
     viewSwap('entry-form');
     $entryHeading.textContent = 'Edit Entry';
+    $btnDelete.className = 'delete';
     var editId = event.target.closest('li').getAttribute('data-entry-id');
     for (const x of data.entries) {
       if (x.entryID === Number(editId)) {
@@ -144,4 +163,30 @@ function entryEdit(event) {
     $formNotes.value = data.editing.notes;
     $imagePreview.setAttribute('src', data.editing.photoURL);
   }
+}
+
+function showDeleteModal(event) {
+  $deleteModal.className = 'delete-modal';
+}
+
+function hideDeleteModal(event) {
+  $deleteModal.className = 'delete-modal hidden';
+}
+
+function deleteEntry(event) {
+  if (data.editing !== null) {
+    for (let i = 0; i < data.entries.length; ++i) {
+      if (data.entries[i].entryID === data.editing.entryID) {
+        var $toDelete = document.querySelector('[data-entry-id=' + '"' + data.entries[i].entryID + '"]');
+        $toDelete.remove();
+        data.entries.splice(i, 1);
+        data.editing = null;
+        $form.reset();
+        hideDeleteModal();
+        viewSwap('entries');
+      }
+    }
+  }
+  hideDeleteModal();
+  viewSwap('entries');
 }
