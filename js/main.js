@@ -11,6 +11,7 @@ var $entryHeading = document.querySelector('.entry-heading');
 var $btnDelete = document.querySelector('.delete');
 var $deleteModal = document.querySelector('.delete-modal');
 var $deleteCancel = document.querySelector('.delete-cancel');
+var $deleteConfirm = document.querySelector('.delete-confirm');
 
 $photoURLInput.addEventListener('input', function (event) {
   $imagePreview.setAttribute('src', $photoURLInput.value);
@@ -52,6 +53,7 @@ $form.addEventListener('submit', function (event) {
 $navEntries.addEventListener('click', function () {
   viewSwap('entries');
 });
+
 $btnNew.addEventListener('click', function () {
   viewSwap('entry-form');
   $entryHeading.textContent = 'New Entry';
@@ -60,6 +62,7 @@ $btnNew.addEventListener('click', function () {
   $imagePreview.setAttribute('src', 'images/placeholder-image-square.jpg');
   data.editing = null;
 });
+
 $submitEntry.addEventListener('click', function () {
   $entryView.className = 'container';
   $formView.className = 'container hidden';
@@ -79,6 +82,8 @@ $entryList.addEventListener('click', entryEdit);
 $btnDelete.addEventListener('click', showDeleteModal);
 
 $deleteCancel.addEventListener('click', hideDeleteModal);
+
+$deleteConfirm.addEventListener('click', deleteEntry);
 
 function displayEntry(entry) {
   var newLi = document.createElement('li');
@@ -166,4 +171,20 @@ function showDeleteModal(event) {
 
 function hideDeleteModal(event) {
   $deleteModal.className = 'delete-modal hidden';
+}
+
+function deleteEntry(event) {
+  if (data.editing !== null) {
+    for (let i = 0; i < data.entries.length; ++i) {
+      if (data.entries[i].entryID === data.editing.entryID) {
+        var $toDelete = document.querySelector('[data-entry-id=' + '"' + data.entries[i].entryID + '"]');
+        $toDelete.remove();
+        data.entries.splice(i, 1);
+        data.editing = null;
+        $form.reset();
+      }
+    }
+  }
+  hideDeleteModal();
+  viewSwap('entries');
 }
