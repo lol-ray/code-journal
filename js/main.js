@@ -182,6 +182,8 @@ function deleteEntry(event) {
         data.entries.splice(i, 1);
         data.editing = null;
         $form.reset();
+        hideDeleteModal();
+        viewSwap('entries');
       }
     }
   }
