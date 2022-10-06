@@ -10,6 +10,7 @@ var $submitEntry = document.querySelector('#save');
 var $entryHeading = document.querySelector('.entry-heading');
 var $btnDelete = document.querySelector('.delete');
 var $deleteModal = document.querySelector('.delete-modal');
+var $deleteCancel = document.querySelector('.delete-cancel');
 
 $photoURLInput.addEventListener('input', function (event) {
   $imagePreview.setAttribute('src', $photoURLInput.value);
@@ -76,6 +77,8 @@ window.addEventListener('DOMContentLoaded', function () {
 $entryList.addEventListener('click', entryEdit);
 
 $btnDelete.addEventListener('click', showDeleteModal);
+
+$deleteCancel.addEventListener('click', hideDeleteModal);
 
 function displayEntry(entry) {
   var newLi = document.createElement('li');
@@ -159,4 +162,8 @@ function entryEdit(event) {
 
 function showDeleteModal(event) {
   $deleteModal.className = 'delete-modal';
+}
+
+function hideDeleteModal(event) {
+  $deleteModal.className = 'delete-modal hidden';
 }
