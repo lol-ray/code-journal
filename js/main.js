@@ -7,6 +7,7 @@ var $formView = document.querySelector('div[data-view="entry-form"]');
 var $navEntries = document.querySelector('.nav-entries');
 var $btnNew = document.querySelector('.btn-new-entry');
 var $submitEntry = document.querySelector('#save');
+var $entryHeading = document.querySelector('.entry-heading');
 
 $photoURLInput.addEventListener('input', function (event) {
   $imagePreview.setAttribute('src', $photoURLInput.value);
@@ -50,6 +51,7 @@ $navEntries.addEventListener('click', function () {
 });
 $btnNew.addEventListener('click', function () {
   viewSwap('entry-form');
+  $entryHeading.textContent = 'New Entry';
   $form.reset();
   $imagePreview.setAttribute('src', 'images/placeholder-image-square.jpg');
   data.editing = null;
@@ -130,6 +132,7 @@ function entryEdit(event) {
   if (event.target.matches('.fa-pen')) {
     $form.reset();
     viewSwap('entry-form');
+    $entryHeading.textContent = 'Edit Entry';
     var editId = event.target.closest('li').getAttribute('data-entry-id');
     for (const x of data.entries) {
       if (x.entryID === Number(editId)) {
